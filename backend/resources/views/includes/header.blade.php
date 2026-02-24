@@ -42,6 +42,7 @@
                 <button id="menu-btn" class="text-gray-700 focus:outline-none">
                     ☰
                 </button>
+
             </div>
         </div>
     </div>
@@ -49,10 +50,10 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
         <div class="px-4 pt-4 pb-4 space-y-3">
-            <a href="#" class="block text-gray-700 hover:text-indigo-600">Home</a>
+            <a href="{{ route('homePage') }}" class="block text-gray-700 hover:text-indigo-600">Home</a>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Shop</a>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Categories</a>
-            <a href="#" class="block text-gray-700 hover:text-indigo-600">About</a>
+            <a href="{{ route('aboutPage') }}" class="block text-gray-700 hover:text-indigo-600">About</a>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Contact</a>
             <hr>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Login</a>
@@ -74,4 +75,17 @@
             menu.classList.toggle('hidden');
         });
     </script>
-@endsection()
+
+    {{-- <script>
+        document.addEventListener('livewire:navigated', () => {
+            const btn = document.getElementById('menu-btn');
+            const menu = document.getElementById('mobile-menu');
+
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script> --}}
+@endsection

@@ -11,7 +11,12 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    @livewireStyles
+    <style>
+        [wire\\:navigate] {
+            transition: opacity 0.3s ease;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,6 +26,8 @@
     @include('includes.footer')
 
     @yield('scripts')
+    @livewireScripts
+    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 
 </html>
