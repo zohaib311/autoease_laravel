@@ -1,15 +1,27 @@
 <?php
 
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
+
+/** 
+ ** basic routes
+**/
 
 Route::get('/', function () {
     return view('welcome');
 })->name('homePage');
 
-Route::get('/about', function () {
-    return view('pages.about');
-})->name('aboutPage');
+// Route::get('/about', function () {
+//     return view('pages.about');
+// })->name('aboutPage');
 
+
+
+/**
+ ** Route from Controller
+ **/
+ 
+ Route::get('/about', [ViewController::class, 'index'])->name('aboutPage');
 
 
 

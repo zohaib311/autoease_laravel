@@ -81,7 +81,7 @@
 
                 @for ($i = 0; $i < 4; $i++)
                     <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4">
-                        <img src="{{ asset('images/casuel.jfif') }}" class="rounded-lg h-64 w-full object-cover">
+                        <img src="{{ asset('images/casual.jfif') }}" class="rounded-lg h-64 w-full object-cover">
 
                         <h3 class="mt-4 font-semibold">Premium Cotton Shirt</h3>
                         <p class="text-gray-500">$49.00</p>

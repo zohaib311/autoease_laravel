@@ -15,6 +15,7 @@
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Shop</a>
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Categories</a>
                 <a href="{{ route('aboutPage') }}" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                {{-- <a href="#" class="text-gray-700 hover:text-indigo-600 transition">About</a> --}}
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
             </nav>
 
