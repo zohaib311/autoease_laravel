@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shirt extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'discount_price',
+        'category',
+        'in_stock',
+    ];
+
+    protected $casts = [
+        'price' => 'decimal:2',
+        'discount_price' => 'decimal:2',
+        'in_stock' => 'boolean',
+    ];
 }

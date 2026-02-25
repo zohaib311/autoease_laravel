@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('title')
+    <title>About</title>
+@endsection()
+
 @section('content')
     <!-- HERO -->
     <section class="relative bg-gray-900 text-white">

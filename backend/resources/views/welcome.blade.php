@@ -1,5 +1,8 @@
 @extends('layout.app')
 
+@section('title')
+    <title>Home</title>
+@endsection()
 
 @section('content')
     <!-- HERO SECTION -->

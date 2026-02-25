@@ -15,6 +15,7 @@
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Shop</a>
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Categories</a>
                 <a href="{{ route('aboutPage') }}" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                <a href="{{ route('admin') }}" class="text-gray-700 hover:text-indigo-600 transition">Admin</a>
                 {{-- <a href="#" class="text-gray-700 hover:text-indigo-600 transition">About</a> --}}
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
             </nav>
@@ -54,6 +55,7 @@
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Shop</a>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Categories</a>
             <a href="{{ route('aboutPage') }}" class="block text-gray-700 hover:text-indigo-600">About</a>
+            <a href="{{ route('admin') }}" class="block text-gray-700 hover:text-indigo-600">Admin</a>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Contact</a>
             <hr>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Login</a>

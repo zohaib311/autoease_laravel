@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\ShirtAdminController;
 use App\Http\Controllers\ShirtController;
 use App\Http\Controllers\ViewController;
-use App\Models\Shirt;
+
 use Illuminate\Support\Facades\Route;
 
 /** 
@@ -30,6 +31,15 @@ Route::get('/', function () {
  Route::get('/get/{id}', [ShirtController::class, 'getById']);
  Route::get('/update/{id}', [ShirtController::class, 'update']);
  Route::get('/delete/{id}', [ShirtController::class, 'delete']);
+
+//  Route::prefix('admin')->name('admin.')->group(function () {
+//     Route::resource('shirts', ShirtAdminController::class)->except('show');
+//  });
+
+Route::prefix('admin')->group(function () {
+    Route::view('/dashboard', 'admin.layout.pages.dashboard')->name('admin');
+    Route::view('/products', 'admin.layout.pages.products')->name('product');
+});
 
 
 // // Routr with data from function using (with)
