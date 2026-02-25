@@ -115,30 +115,34 @@
         </div>
     </section>
 
-    <!-- WHY US -->
+    <!-- WHY CHOOSE US -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6">
 
-            <h2 class="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
+            <h2 class="text-3xl font-bold text-center mb-4">Why Choose Us?</h2>
+            <p class="text-center text-gray-500 mb-12 max-w-2xl mx-auto">
+                We combine quality materials, reliable service, and modern designs to deliver shirts you can trust every
+                day.
+            </p>
 
             <div class="grid md:grid-cols-3 gap-10 text-center">
 
                 <div>
-                    <div class="text-4xl mb-4">🚚</div>
+                    <div class="text-4xl mb-4">&#128666;</div>
                     <h3 class="font-semibold text-xl">Free Shipping</h3>
-                    <p class="text-gray-500 mt-2">On all orders above $100</p>
+                    <p class="text-gray-500 mt-2">On all orders above $100, delivered fast and safe.</p>
                 </div>
 
                 <div>
-                    <div class="text-4xl mb-4">💳</div>
+                    <div class="text-4xl mb-4">&#128179;</div>
                     <h3 class="font-semibold text-xl">Secure Payment</h3>
-                    <p class="text-gray-500 mt-2">100% secure payment</p>
+                    <p class="text-gray-500 mt-2">Protected checkout with trusted payment methods.</p>
                 </div>
 
                 <div>
-                    <div class="text-4xl mb-4">⭐</div>
+                    <div class="text-4xl mb-4">&#11088;</div>
                     <h3 class="font-semibold text-xl">Premium Quality</h3>
-                    <p class="text-gray-500 mt-2">Crafted with finest fabrics</p>
+                    <p class="text-gray-500 mt-2">Expertly stitched shirts made from premium fabrics.</p>
                 </div>
 
             </div>

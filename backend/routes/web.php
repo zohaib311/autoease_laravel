@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ShirtController;
 use App\Http\Controllers\ViewController;
+use App\Models\Shirt;
 use Illuminate\Support\Facades\Route;
 
 /** 
@@ -23,6 +25,11 @@ Route::get('/', function () {
  
  Route::get('/about', [ViewController::class, 'index'])->name('aboutPage');
 
+ Route::get('/insert', [ShirtController::class, 'insert']);
+ Route::get('/get', [ShirtController::class, 'get']);
+ Route::get('/get/{id}', [ShirtController::class, 'getById']);
+ Route::get('/update/{id}', [ShirtController::class, 'update']);
+ Route::get('/delete/{id}', [ShirtController::class, 'delete']);
 
 
 // // Routr with data from function using (with)
