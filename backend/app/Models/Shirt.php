@@ -18,6 +18,5 @@ class Shirt extends Model
     protected $casts = [
         'price' => 'decimal:2',
         'discount_price' => 'decimal:2',
-        'in_stock' => 'boolean',
     ];
 }
