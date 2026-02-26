@@ -18,7 +18,10 @@ class ShirtController extends Controller
         $shirt->category = $request->category;
         $shirt->in_stock = $request->stock;
         $shirt->save();
-        return redirect('admin/product');
+        return redirect('admin/product')->with('status', [
+            'type' => 'success',
+            'message' => 'Product Added successfully.'
+        ]);;
 
 
         // return  print_r($request->only(['name', 'discount_price', "description", "category", "stock"]));
@@ -51,18 +54,48 @@ class ShirtController extends Controller
      */
 
 
+    private function privateDelete($id)
+    {
+        $shirtsData = Shirt::findOrFail($id);
+        return ($shirtsData);
+    }
+
+    public function delete($id)
+    {
+        $shirtsData = $this->privateDelete($id);
+        $shirtsData->delete();
+        return redirect('/admin/product')->with('status', [
+            'type' => 'delete',
+            'message' => 'Product deleted successfully.'
+        ]);;
+    }
+
+    public function deleteApi($id)
+    {
+        $shirtData = $this->privateDelete($id);
+
+        if (!$shirtData) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product not found'
+            ], 404);
+        }
+
+        $shirtData->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Product deleted successfully'
+        ], 200);
+    }
+
+
     public function getById($id)
     {
         $shrt = Shirt::findOrFail($id);
         return $shrt;
     }
 
-    public function delete($id)
-    {
-        $shrt = Shirt::findOrFail($id);
-        $shrt->delete();
-        return 'Item deleted successfully';
-    }
 
     public function update($id)
     {

@@ -37,6 +37,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/product', [ShirtController::class, 'get'])->name('products');
 });
 
+Route::get('/product/delete/{id}', [ShirtController::class, 'delete']);
 Route::post('/product/item/insert', [ShirtController::class, 'insert']);
 
 Route::fallback(function () {
