@@ -4,19 +4,18 @@
 
             <!-- Logo -->
             <div class="flex-shrink-0">
-                <a href="/" class="text-2xl font-bold text-indigo-600">
+                <a href="{{ route('homePage') }}" wire:navigate class="text-2xl font-bold text-indigo-600">
                     ShirtStore
                 </a>
             </div>
 
             <!-- Desktop Menu -->
             <nav class="hidden md:flex space-x-8">
-                <a href="{{ route('homePage') }}" class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+                <a href="{{ route('homePage') }}" wire:navigate class="text-gray-700 hover:text-indigo-600 transition">Home</a>
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Shop</a>
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Categories</a>
-                <a href="{{ route('aboutPage') }}" class="text-gray-700 hover:text-indigo-600 transition">About</a>
-                <a href="{{ route('admin') }}" class="text-gray-700 hover:text-indigo-600 transition">Admin</a>
-                {{-- <a href="#" class="text-gray-700 hover:text-indigo-600 transition">About</a> --}}
+                <a href="{{ route('aboutPage') }}" wire:navigate class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                <a href="{{ route('admin') }}" wire:navigate class="text-gray-700 hover:text-indigo-600 transition">Admin</a>
                 <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
             </nav>
 
@@ -40,10 +39,9 @@
 
             <!-- Mobile Button -->
             <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                <button id="menu-btn" class="text-gray-700 focus:outline-none" type="button">
                     ☰
                 </button>
-
             </div>
         </div>
     </div>
@@ -51,11 +49,11 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
         <div class="px-4 pt-4 pb-4 space-y-3">
-            <a href="{{ route('homePage') }}" class="block text-gray-700 hover:text-indigo-600">Home</a>
+            <a href="{{ route('homePage') }}" wire:navigate class="block text-gray-700 hover:text-indigo-600">Home</a>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Shop</a>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Categories</a>
-            <a href="{{ route('aboutPage') }}" class="block text-gray-700 hover:text-indigo-600">About</a>
-            <a href="{{ route('admin') }}" class="block text-gray-700 hover:text-indigo-600">Admin</a>
+            <a href="{{ route('aboutPage') }}" wire:navigate class="block text-gray-700 hover:text-indigo-600">About</a>
+            <a href="{{ route('admin') }}" wire:navigate class="block text-gray-700 hover:text-indigo-600">Admin</a>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Contact</a>
             <hr>
             <a href="#" class="block text-gray-700 hover:text-indigo-600">Login</a>
@@ -67,27 +65,22 @@
     </div>
 </header>
 
-
-@section('scripts')
-    <script>
-        const btn = document.getElementById('menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-    </script>
-
-    {{-- <script>
-        document.addEventListener('livewire:navigated', () => {
+<script>
+    (() => {
+        const initMobileMenu = () => {
             const btn = document.getElementById('menu-btn');
             const menu = document.getElementById('mobile-menu');
 
-            if (btn) {
-                btn.addEventListener('click', () => {
-                    menu.classList.toggle('hidden');
-                });
+            if (!btn || !menu) {
+                return;
             }
-        });
-    </script> --}}
-@endsection
+
+            btn.onclick = () => {
+                menu.classList.toggle('hidden');
+            };
+        };
+
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
+        document.addEventListener('livewire:navigated', initMobileMenu);
+    })();
+</script>

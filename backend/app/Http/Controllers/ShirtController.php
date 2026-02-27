@@ -22,8 +22,6 @@ class ShirtController extends Controller
             'type' => 'success',
             'message' => 'Product Added successfully.'
         ]);;
-
-
         // return  print_r($request->only(['name', 'discount_price', "description", "category", "stock"]));
     }
 
@@ -64,7 +62,7 @@ class ShirtController extends Controller
     {
         $shirtsData = $this->privateDelete($id);
         $shirtsData->delete();
-        return redirect('/admin/product')->with('status', [
+        return redirect()->route('products')->with('status', [
             'type' => 'delete',
             'message' => 'Product deleted successfully.'
         ]);;
@@ -89,25 +87,35 @@ class ShirtController extends Controller
         ], 200);
     }
 
-
-    public function getById($id)
+    public function edit($id)
     {
-        $shrt = Shirt::findOrFail($id);
-        return $shrt;
+        $shirt = Shirt::findOrFail($id);
+        return view('admin.layout.pages.edit', compact('shirt'));
     }
 
-
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $shrt = Shirt::findOrFail($id);
-        $shrt->name = 'Classic Black Hoodie';
-        $shrt->description = 'Premium black Hoodie for casuel wear';
-        $shrt->price = '1500';
-        $shrt->discount_price = '1200';
-        $shrt->category = 'casuel';
-        $shrt->in_stock = '3';
-        $shrt->update();
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'discount_price' => 'nullable|numeric|min:0',
+            'category' => 'required|string|max:100',
+            'stock' => 'required|integer|min:0',
+        ]);
 
-        return 'Updated successfully';
+        $shirt = Shirt::findOrFail($id);
+        $shirt->name = $validated['name'];
+        $shirt->description = $validated['description'] ?? null;
+        $shirt->price = $validated['price'];
+        $shirt->discount_price = $validated['discount_price'] ?? null;
+        $shirt->category = $validated['category'];
+        $shirt->in_stock = $validated['stock'];
+        $shirt->save();
+
+        return redirect()->route('products')->with('status', [
+            'type' => 'success',
+            'message' => 'Product updated successfully.'
+        ]);
     }
 }

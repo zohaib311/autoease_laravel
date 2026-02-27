@@ -35,9 +35,11 @@ Route::get('/about', [ViewController::class, 'index'])->name('aboutPage');
 Route::prefix('admin')->group(function () {
     Route::view('/dashboard', 'admin.layout.pages.dashboard')->name('admin');
     Route::get('/product', [ShirtController::class, 'get'])->name('products');
+    Route::get('/product/{id}/edit', [ShirtController::class, 'edit'])->name('product.edit');
+    Route::post('/product/{id}/update', [ShirtController::class, 'update'])->name('product.update');
+    Route::get('/product/delete/{id}', [ShirtController::class, 'delete'])->name('product.delete');
 });
 
-Route::get('/product/delete/{id}', [ShirtController::class, 'delete']);
 Route::post('/product/item/insert', [ShirtController::class, 'insert']);
 
 Route::fallback(function () {

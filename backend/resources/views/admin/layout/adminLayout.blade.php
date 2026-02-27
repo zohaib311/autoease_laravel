@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @yield('title')
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="bg-gray-100">
@@ -23,15 +24,15 @@
             </div>
 
             <nav class="flex-1 p-4 space-y-2">
-                <a href="{{ route('admin') }}" class="block px-4 py-2 rounded-lg hover:bg-gray-800">📊 Dashboard</a>
-                <a href="{{ route('products') }}" class="block px-4 py-2 rounded-lg hover:bg-gray-800">👕 Products</a>
+                <a href="{{ route('admin') }}" wire:navigate class="block px-4 py-2 rounded-lg hover:bg-gray-800">📊 Dashboard</a>
+                <a href="{{ route('products') }}" wire:navigate class="block px-4 py-2 rounded-lg hover:bg-gray-800">👕 Products</a>
                 <a href="#" class="block px-4 py-2 rounded-lg hover:bg-gray-800">📂 Categories</a>
                 <a href="#" class="block px-4 py-2 rounded-lg hover:bg-gray-800">🛒 Orders</a>
                 <a href="#" class="block px-4 py-2 rounded-lg hover:bg-gray-800">👤 Users</a>
             </nav>
 
             <div class="p-4 border-t border-gray-700">
-                <a href="/"
+                <a href="{{ route('homePage') }}" wire:navigate
                     class="block px-4 py-2 rounded-lg bg-indigo-600 text-white text-center hover:bg-indigo-700">
                     View Website
                 </a>
@@ -78,36 +79,41 @@
 
     @yield('scripts')
 
+    @livewireScripts
     <script>
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
+        (() => {
+            const initSidebar = () => {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('overlay');
 
-        let sidebarOpen = true;
+                if (!sidebar || !overlay) {
+                    return;
+                }
 
-        function toggleSidebar() {
+                window.toggleSidebar = () => {
+                    if (window.innerWidth < 768) {
+                        sidebar.classList.toggle('-translate-x-full');
+                        overlay.classList.toggle('hidden');
+                    } else {
+                        sidebar.classList.toggle('w-64');
+                        sidebar.classList.toggle('w-0');
+                        sidebar.classList.toggle('overflow-hidden');
+                    }
+                };
 
-            if (window.innerWidth < 768) {
-                // Mobile behavior
-                sidebar.classList.toggle('-translate-x-full');
-                overlay.classList.toggle('hidden');
-            } else {
-                // Desktop collapse behavior
-                sidebar.classList.toggle('w-64');
-                sidebar.classList.toggle('w-0');
-                sidebar.classList.toggle('overflow-hidden');
-            }
-        }
+                overlay.onclick = () => {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                };
 
-        // Close mobile sidebar when clicking overlay
-        overlay.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
-        });
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            };
 
-        // Initialize mobile state
-        if (window.innerWidth < 768) {
-            sidebar.classList.add('-translate-x-full');
-        }
+            document.addEventListener('DOMContentLoaded', initSidebar);
+            document.addEventListener('livewire:navigated', initSidebar);
+        })();
     </script>
 
 </body>
